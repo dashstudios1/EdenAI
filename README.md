@@ -1,5 +1,4 @@
 # EdenAI
-# EdenAI 🤖✨
 
 An iOS AI companion app that turns your iPhone or iPad into a mini interactive desktop robot inspired by Amazon Astro.
 
