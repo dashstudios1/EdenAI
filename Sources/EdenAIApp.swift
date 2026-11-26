@@ -278,18 +278,8 @@ struct EdenEyeView: View {
                 Circle()
                     .stroke(Color.white, lineWidth: 16)
                     .frame(width: 110, height: 110)
-                    .scaleEffect(y: blinkState ? 0.05 : 1.0, animation: .easeInOut(duration: 0.12))
+                    .scaleEffect(y: blinkState ? 0.05 : 1.0)
                 
                 // Thinking Inner Pulse
                 if emotion == .thinking {
                     Circle()
-                        .fill(Color.white.opacity(0.4))
-                        .frame(width: 50, height: 50)
-                        .scaleEffect(blinkState ? 1.2 : 0.8)
-                        .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true), value: blinkState)
-                }
-            }
-        }
-        .frame(width: 120, height: 120)
-    }
-}
