@@ -1,0 +1,44 @@
+name: Build Unsigned IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode Project
+        run: xcodegen generate
+
+      - name: Build Unsigned App
+        run: |
+          xcodebuild clean build \
+            -project EdenAI.xcodeproj \
+            -scheme EdenAI \
+            -sdk iphoneos \
+            -configuration Release \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CONFIGURATION_BUILD_DIR=build
+
+      - name: Package into IPA
+        run: |
+          mkdir -p Payload
+          cp -r build/EdenAI.app Payload/
+          zip -r EdenAI.ipa Payload
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EdenAI-Unsigned-IPA
+          path: EdenAI.ipa

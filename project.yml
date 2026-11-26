@@ -1,0 +1,17 @@
+name: EdenAI
+options:
+  bundleIdPrefix: com.edenai
+settings:
+  IPHONEOS_DEPLOYMENT_TARGET: 16.0
+targets:
+  EdenAI:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    info:
+      path: Info.plist
+      properties:
+        UILaunchScreen: {}
+        NSMicrophoneUsageDescription: "Eden needs microphone access to listen for your voice."
+        NSSpeechRecognitionUsageDescription: "Eden uses speech recognition to understand your commands."
