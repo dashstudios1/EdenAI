@@ -283,3 +283,13 @@ struct EdenEyeView: View {
                 // Thinking Inner Pulse
                 if emotion == .thinking {
                     Circle()
+.fill(Color.white.opacity(0.4))
+.frame(width: 50, height: 50)
+.scaleEffect(blinkState ? 1.2 : 0.8)
+.animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true), value: blinkState)
+}
+}
+}
+.frame(width: 120, height: 120)
+}
+}
